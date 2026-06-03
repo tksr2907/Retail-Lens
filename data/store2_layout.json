@@ -1,0 +1,189 @@
+{
+  "store_id": "STORE_BLR_001",
+  "store_name": "MG_Road_Bangalore",
+  "city": "Bangalore",
+  "open_hours": {
+    "open": "10:00",
+    "close": "22:00"
+  },
+  "cameras": [
+    {
+      "camera_id": "CAM_ENTRY_01",
+      "type": "entry",
+      "file": "store2/entry_1.mp4",
+      "description": "Main entry threshold \u2014 bottom centre, left glass section",
+      "resolution": "960x1080",
+      "fps": 25
+    },
+    {
+      "camera_id": "CAM_ENTRY_02",
+      "type": "entry",
+      "file": "store2/entry_2.mp4",
+      "description": "Secondary entry threshold \u2014 bottom centre, right glass section",
+      "resolution": "960x1080",
+      "fps": 25
+    },
+    {
+      "camera_id": "CAM_FLOOR_01",
+      "type": "floor",
+      "file": "store2/zone.mp4",
+      "description": "Main floor \u2014 wall units + gondola coverage",
+      "resolution": "960x1080",
+      "fps": 25
+    },
+    {
+      "camera_id": "CAM_BILLING_01",
+      "type": "billing",
+      "file": "store2/billing_area.mp4",
+      "description": "Billing counter \u2014 top centre under B.O.H, 85 inch LED screen",
+      "resolution": "960x1080",
+      "fps": 25
+    }
+  ],
+  "zones": [
+    {
+      "zone_id": "ENTRY",
+      "zone_name": "Entry / Exit",
+      "sku_zone": null,
+      "camera_ids": [
+        "CAM_ENTRY_01",
+        "CAM_ENTRY_02"
+      ],
+      "entry_line_y_fraction": 0.85,
+      "description": "Double-width entry at bottom centre between existing glazing sections"
+    },
+    {
+      "zone_id": "SKINCARE",
+      "zone_name": "Skincare",
+      "sku_zone": "SKINCARE",
+      "camera_ids": [
+        "CAM_FLOOR_01"
+      ],
+      "bbox": [
+        0.0,
+        0.1,
+        0.25,
+        0.65
+      ],
+      "wall_units": [
+        "WALL_UNIT_1",
+        "WALL_UNIT_2",
+        "WALL_UNIT_3"
+      ],
+      "description": "Left wall units 1-3 \u2014 face care, toners, serums, moisturisers"
+    },
+    {
+      "zone_id": "HAIRCARE",
+      "zone_name": "Haircare",
+      "sku_zone": "HAIRCARE",
+      "camera_ids": [
+        "CAM_FLOOR_01"
+      ],
+      "bbox": [
+        0.0,
+        0.65,
+        0.25,
+        1.0
+      ],
+      "wall_units": [
+        "WALL_UNIT_4",
+        "WALL_UNIT_5",
+        "WALL_UNIT_6"
+      ],
+      "description": "Left wall units 4-6 \u2014 shampoo, conditioner, hair treatments"
+    },
+    {
+      "zone_id": "FRAGRANCE",
+      "zone_name": "Fragrance & Personal Care",
+      "sku_zone": "FRAGRANCE",
+      "camera_ids": [
+        "CAM_FLOOR_01"
+      ],
+      "bbox": [
+        0.25,
+        0.4,
+        0.65,
+        1.0
+      ],
+      "gondolas": [
+        "MK_GONDOLA_1",
+        "MK_GONDOLA_2"
+      ],
+      "description": "Centre gondolas \u2014 perfumes, deodorants, personal care"
+    },
+    {
+      "zone_id": "MAKEUP",
+      "zone_name": "Makeup & Colour",
+      "sku_zone": "MAKEUP",
+      "camera_ids": [
+        "CAM_FLOOR_01"
+      ],
+      "bbox": [
+        0.75,
+        0.1,
+        1.0,
+        0.65
+      ],
+      "wall_units": [
+        "WALL_UNIT_15",
+        "WALL_UNIT_16",
+        "WALL_UNIT_17",
+        "WALL_UNIT_18"
+      ],
+      "description": "Right wall units 15-18 \u2014 foundation, lipstick, eye makeup"
+    },
+    {
+      "zone_id": "MAKER_STUDIO",
+      "zone_name": "Maker Studio",
+      "sku_zone": "MAKER_STUDIO",
+      "camera_ids": [
+        "CAM_FLOOR_01"
+      ],
+      "bbox": [
+        0.65,
+        0.35,
+        1.0,
+        1.0
+      ],
+      "description": "Maker Units cluster \u2014 makeup application/trial area with seating"
+    },
+    {
+      "zone_id": "PREMIUM",
+      "zone_name": "Premium Brands",
+      "sku_zone": "PREMIUM",
+      "camera_ids": [
+        "CAM_FLOOR_01"
+      ],
+      "bbox": [
+        0.1,
+        0.0,
+        0.9,
+        0.15
+      ],
+      "wall_units": [
+        "WALL_UNIT_7",
+        "WALL_UNIT_8",
+        "WALL_UNIT_9",
+        "WALL_UNIT_10",
+        "WALL_UNIT_11",
+        "WALL_UNIT_12"
+      ],
+      "description": "Top wall units 7-12 \u2014 premium and featured brands"
+    },
+    {
+      "zone_id": "BILLING",
+      "zone_name": "Cash Counter",
+      "sku_zone": "BILLING",
+      "camera_ids": [
+        "CAM_BILLING_01"
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "description": "POS cash counter \u2014 top centre, below B.O.H, 85 inch LED screen display"
+    }
+  ]
+}

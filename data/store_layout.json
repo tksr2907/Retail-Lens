@@ -1,0 +1,184 @@
+{
+  "store_id": "STORE_BLR_002",
+  "store_name": "Brigade_Road_Bangalore",
+  "city": "Bangalore",
+  "open_hours": {
+    "open": "10:00",
+    "close": "22:00"
+  },
+  "cameras": [
+    {
+      "camera_id": "CAM_ENTRY_01",
+      "type": "entry",
+      "file": "store1/CAM_3_entry.mp4",
+      "description": "Entry/Exit threshold \u2014 left glass door",
+      "resolution": "1920x1080",
+      "fps": 30
+    },
+    {
+      "camera_id": "CAM_FLOOR_02",
+      "type": "floor",
+      "file": "store1/CAM_1_zone.mp4",
+      "description": "Main floor \u2014 top wall brand units + fragrance/nail island",
+      "resolution": "1920x1080",
+      "fps": 30
+    },
+    {
+      "camera_id": "CAM_FLOOR_04",
+      "type": "floor",
+      "file": "store1/CAM_2_zone.mp4",
+      "description": "Secondary floor \u2014 bottom wall + makeup unit island",
+      "resolution": "1920x1080",
+      "fps": 30
+    },
+    {
+      "camera_id": "CAM_BILLING_03",
+      "type": "billing",
+      "file": "store1/CAM_5_billing.mp4",
+      "description": "Cash counter (billing) \u2014 right side + 55 inch LED",
+      "resolution": "1920x1080",
+      "fps": 25
+    }
+  ],
+  "zones": [
+    {
+      "zone_id": "ENTRY",
+      "zone_name": "Entry / Exit",
+      "sku_zone": null,
+      "camera_ids": [
+        "CAM_ENTRY_01"
+      ],
+      "entry_line_y_fraction": 0.55,
+      "description": "Main glass door entry and exit \u2014 left side of store"
+    },
+    {
+      "zone_id": "SKINCARE",
+      "zone_name": "Skincare & Face",
+      "sku_zone": "SKINCARE",
+      "camera_ids": [
+        "CAM_FLOOR_02"
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        0.45,
+        0.55
+      ],
+      "brands": [
+        "Minimalis",
+        "Aqualogi",
+        "TFS"
+      ],
+      "description": "Top wall \u2014 toners, serums, moisturisers, sunscreen, face care"
+    },
+    {
+      "zone_id": "MAKEUP",
+      "zone_name": "Makeup & Colour",
+      "sku_zone": "MAKEUP",
+      "camera_ids": [
+        "CAM_FLOOR_02"
+      ],
+      "bbox": [
+        0.45,
+        0.0,
+        1.0,
+        0.55
+      ],
+      "brands": [
+        "Foxtal",
+        "JC",
+        "Mars+Nybae"
+      ],
+      "description": "Top wall right + makeup unit island \u2014 foundation, lipstick, kajal"
+    },
+    {
+      "zone_id": "FRAGRANCE",
+      "zone_name": "Fragrance & Nail",
+      "sku_zone": "FRAGRANCE",
+      "camera_ids": [
+        "CAM_FLOOR_02"
+      ],
+      "bbox": [
+        0.05,
+        0.55,
+        0.35,
+        1.0
+      ],
+      "brands": [
+        "Salm"
+      ],
+      "description": "Round fragrance display + nail unit \u2014 perfumes, roll-ons, nail polish"
+    },
+    {
+      "zone_id": "HAIRCARE",
+      "zone_name": "Haircare",
+      "sku_zone": "HAIRCARE",
+      "camera_ids": [
+        "CAM_FLOOR_04"
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        0.4,
+        0.6
+      ],
+      "brands": [
+        "Lo'real",
+        "TFS"
+      ],
+      "description": "Bottom wall \u2014 shampoo, conditioner, hair masks, serums"
+    },
+    {
+      "zone_id": "BATH_BODY",
+      "zone_name": "Bath & Body / Mens",
+      "sku_zone": "BATH_BODY",
+      "camera_ids": [
+        "CAM_FLOOR_04"
+      ],
+      "bbox": [
+        0.4,
+        0.0,
+        0.75,
+        0.6
+      ],
+      "brands": [
+        "Mens",
+        "Mars+Nybae"
+      ],
+      "description": "Bottom wall centre \u2014 body wash, lotions, mens grooming"
+    },
+    {
+      "zone_id": "ACCESSORIES",
+      "zone_name": "Accessories & Tools",
+      "sku_zone": "ACCESSORIES",
+      "camera_ids": [
+        "CAM_FLOOR_04"
+      ],
+      "bbox": [
+        0.75,
+        0.0,
+        1.0,
+        0.6
+      ],
+      "brands": [
+        "Beaut"
+      ],
+      "description": "Bottom wall right + accessories \u2014 brushes, tools, beauty accessories"
+    },
+    {
+      "zone_id": "BILLING",
+      "zone_name": "Cash Counter",
+      "sku_zone": "BILLING",
+      "camera_ids": [
+        "CAM_BILLING_03"
+      ],
+      "bbox": [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      "description": "POS cash counter \u2014 right side of store, 55 inch LED display above"
+    }
+  ]
+}

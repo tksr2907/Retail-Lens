@@ -1,0 +1,15 @@
+db/store_intelligence.db
+db/test.db
+db/test.db-journal
+.coverage
+.coverage.*
+.pytest_cache/
+pytest-cache-files*/
+__pycache__/
+*.pyc
+*.pyo
+Assessment*.pdf
+Purplle*.pdf
+Brigade Road*.xlsx
+Brigade_Bangalore*.csv
+CCTV Footage*/

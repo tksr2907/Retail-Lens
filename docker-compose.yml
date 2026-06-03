@@ -1,0 +1,58 @@
+services:
+
+  # ── API Service (always starts) ────────────────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data          # video clips + sample events + POS CSV
+      - store_db:/tmp             # SQLite database (survives restarts)
+    environment:
+      - DATABASE_URL=sqlite:////tmp/store_intelligence.db
+      - STORE_LAYOUT_PATH=/app/data/store_layout.json
+      - POS_CSV_PATH=/app/data/pos_transactions.csv
+      - SAMPLE_EVENTS_PATH=/app/data/sample_events.jsonl
+      - LOG_LEVEL=INFO
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+
+  # ── Pipeline Service (opt-in via --profile pipeline) ──────────────────────
+  # Runs YOLOv8n on all CAM *.mp4 files and pushes structured events to the API.
+  #
+  # Quick start (first 30s of each clip ~2 min on CPU):
+  #   MAX_FRAMES=450 docker compose --profile pipeline up
+  #
+  # Full clip:
+  #   docker compose --profile pipeline up
+  pipeline:
+    profiles: ["pipeline"]
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./data:/app/data
+      - store_db:/tmp
+    environment:
+      - API_URL=http://api:8000
+      - CLIPS_DIR=/app/data
+      - LAYOUT=/app/data/store_layout.json
+      - OUTPUT=/app/data/events_yolo.jsonl
+      - DATABASE_URL=sqlite:////tmp/store_intelligence.db
+      - DETECT_STRIDE=3
+      - MAX_FRAMES=${MAX_FRAMES:-0}
+    entrypoint: ["bash", "/app/entrypoint.sh"]
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: "no"
+
+volumes:
+  store_db:
