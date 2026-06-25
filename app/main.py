@@ -316,6 +316,7 @@ async def health(db: Session = Depends(get_db)):
 @app.delete("/admin/reset")
 async def reset_today(db: Session = Depends(get_db)):
     """Delete all of today's events so the demo dashboard starts from zero."""
+    from datetime import datetime, timezone
     today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     deleted = db.query(EventRecord).filter(
         EventRecord.timestamp >= today + "T00:00:00Z"
