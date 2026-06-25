@@ -56,11 +56,21 @@ def compute_metrics(store_id: str, db: Session, date_str: Optional[str] = None) 
     )
     avg_dwell_ms = round(float(avg_dwell_row), 1) if avg_dwell_row else 0.0
 
+    # Anchor queue window on latest event time (handles replayed/future-timestamped data)
+    latest_ts = (
+        db.query(func.max(EventRecord.timestamp))
+        .filter(EventRecord.store_id == store_id)
+        .scalar()
+    )
+    if latest_ts:
+        anchor = datetime.fromisoformat(latest_ts.replace("Z", "+00:00"))
+    else:
+        anchor = datetime.now(timezone.utc)
+    window_start = (anchor - timedelta(minutes=30)).strftime("%Y-%m-%dT%H:%M:%SZ")
+
     recent_billing = q().filter(
         EventRecord.event_type == "BILLING_QUEUE_JOIN",
-        EventRecord.timestamp >= (
-            datetime.now(timezone.utc) - timedelta(minutes=30)
-        ).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        EventRecord.timestamp >= window_start,
     ).count()
     queue_depth = max(0, recent_billing)
 

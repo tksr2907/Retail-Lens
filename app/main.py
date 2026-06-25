@@ -214,12 +214,17 @@ async def pos_breakdown(store_id: str, date: Optional[str] = Query(None), db: Se
     top_brands = sorted(brand_revenue.items(), key=lambda x: x[1], reverse=True)[:5]
     peak_hour = max(hourly_rev, key=hourly_rev.get) if hourly_rev else None
 
+    total_gmv = round(sum(t["gmv"] for t in window_txns), 2)
+    total_txns = len(window_txns)
+    avg_basket = round(total_gmv / total_txns, 2) if total_txns > 0 else 0.0
+
     return {
         "store_id": store_id,
         "as_of": end_ts,
         "date": date or start_ts[:10],
-        "total_transactions": len(window_txns),
-        "total_gmv_inr": round(sum(t["gmv"] for t in window_txns), 2),
+        "total_transactions": total_txns,
+        "total_gmv_inr": total_gmv,
+        "avg_basket_value_inr": avg_basket,
         "department_breakdown": [
             {"department": dept, "gmv_inr": round(s["gmv"], 2), "nmv_inr": round(s["nmv"], 2), "transaction_count": s["orders"]}
             for dept, s in sorted(dept_revenue.items(), key=lambda x: x[1]["gmv"], reverse=True)

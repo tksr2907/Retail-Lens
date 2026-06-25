@@ -102,11 +102,13 @@ def get_confirmed_purchases(store_id: str, db: Session, date_str: Optional[str] 
 
     transactions = load_pos_transactions(store_id)
 
-    # Filter transactions to the date window
+    # Filter transactions to the date window; fall back to all data for demos/replays
     window_txns = [
         t for t in transactions
         if start_ts <= t["timestamp"].strftime("%Y-%m-%dT%H:%M:%SZ") <= end_ts
     ]
+    if not window_txns:
+        window_txns = transactions
 
     # Get visitors who were in BILLING zone
     billing_events = (
