@@ -313,6 +313,17 @@ async def health(db: Session = Depends(get_db)):
     return compute_health(db)
 
 
+@app.delete("/admin/reset")
+async def reset_today(db: Session = Depends(get_db)):
+    """Delete all of today's events so the demo dashboard starts from zero."""
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    deleted = db.query(EventRecord).filter(
+        EventRecord.timestamp >= today + "T00:00:00Z"
+    ).delete(synchronize_session=False)
+    db.commit()
+    return {"deleted": deleted, "message": "Dashboard reset to zero. Run the replay to repopulate."}
+
+
 # ── WebSocket ─────────────────────────────────────────────────────────────────
 
 @app.websocket("/ws/stores/{store_id}")
